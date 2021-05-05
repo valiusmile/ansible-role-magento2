@@ -128,6 +128,16 @@
     magento2_cache_database: "{{ magento2_cache_database_for_run }}"
   when: magento2_cache_database_for_run != "" and magento2_env_php_template != "" and magento2_override_env_file == false
 
+- name: "Clear magento cache setup redis database"
+  command: "redis-cli -h {{ magento_cache_host }} -p {{ magento_cache_port }} -n {{ magento2_cache_database_for_setup }} flushdb"
+  run_once: true
+  when: magento2_cache_database_for_setup != ""
+
+- name: "Clear magento cache final redis database"
+  command: "redis-cli -h {{ magento_cache_host }} -p {{ magento_cache_port }} -n {{ magento2_cache_database_for_run }} flushdb"
+  run_once: true
+  when: magento2_cache_database_for_run != ""
+
 - name: Set proper ownwernship of repository files.
   file:
     group: "{{magento2_runtime_group}}"

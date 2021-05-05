@@ -98,3 +98,8 @@ magento2_magento_cli_commands:
   - setup:upgrade
   - setup:di:compile
   - setup:static-content:deploy -f en_US
+
+# Vars for env.php template
+magento2_cache_database_for_run: ""
+magento2_cache_database_for_setup: ""
+magento2_env_php_template: ""
